@@ -1,3 +1,7 @@
+import sys
+from pathlib import Path
+sys.path.insert(0,"./evaluator")
+
 from torch.utils.data import DataLoader
 from Datasets.utils import ToTensor, Compose, CropCenter, dataset_intrinsics, DownscaleFlow, plot_traj, visflow
 from Datasets.tartanTrajFlowDataset import TrajFolderDataset
