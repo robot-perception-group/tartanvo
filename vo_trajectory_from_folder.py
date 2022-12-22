@@ -55,7 +55,9 @@ if __name__ == '__main__':
         datastr = 'euroc'
     else:
         datastr = 'tartanair'
-    focalx, focaly, centerx, centery = dataset_intrinsics(datastr) 
+    #focalx, focaly, centerx, centery = dataset_intrinsics(datastr) 
+    focalx, focaly, centerx, centery = 325.9103, 399.3103, 320, 240
+
     if args.kitti_intrinsics_file.endswith('.txt') and datastr=='kitti':
         focalx, focaly, centerx, centery = load_kiiti_intrinsics(args.kitti_intrinsics_file)
 
