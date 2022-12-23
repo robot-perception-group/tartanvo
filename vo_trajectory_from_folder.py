@@ -34,6 +34,8 @@ def get_args():
                         help='kitti test (default: False)')
     parser.add_argument('--kitti-intrinsics-file',  default='',
                         help='kitti intrinsics file calib.txt (default: )')
+    parser.add_argument('--grade', action='store_true', default=False,
+                        help='grade test (default: False)')
     parser.add_argument('--test-dir', default='',
                         help='test trajectory folder where the RGB images are (default: "")')
     parser.add_argument('--pose-file', default='',
@@ -57,10 +59,11 @@ if __name__ == '__main__':
         datastr = 'kitti'
     elif args.euroc:
         datastr = 'euroc'
+    elif args.grade:
+        datastr = 'grade'
     else:
         datastr = 'tartanair'
-    #focalx, focaly, centerx, centery = dataset_intrinsics(datastr) 
-    focalx, focaly, centerx, centery = 325.9103, 399.3103, 320, 240
+    focalx, focaly, centerx, centery = dataset_intrinsics(datastr) 
 
     if args.kitti_intrinsics_file.endswith('.txt') and datastr=='kitti':
         focalx, focaly, centerx, centery = load_kiiti_intrinsics(args.kitti_intrinsics_file)
