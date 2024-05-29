@@ -14,13 +14,17 @@ if __name__ == '__main__':
 			continue
 		print(f"running {fold}")
 		for exp in os.listdir(os.path.join(PATH, fold, 'DATA')):
+			if exp != "D-75bf6":
+				continue
 			for type in ['GT', 'NOISY']:
+				if type != "GT":
+					continue
 				print(f"running {exp} {type}")
 				cexp = os.path.join(PATH, fold, 'DATA', exp, type)
 				for idx in range(10):
 					if os.path.exists('/home/ebonetto/tartanvo/results'):
 						os.system("rm -r /home/ebonetto/tartanvo/results")
-
+					os.makedirs('/home/ebonetto/tartanvo/results')
 					print(os.path.join(cexp, f'exp_{idx}'))
 					if not os.path.exists(os.path.join(cexp, 'gt_pose_tartan.txt')):
 						log = os.popen(f"cp {os.path.join(PATH, fold, 'DATA', exp, 'groundtruth.txt')} {os.path.join(cexp, 'gt_pose.txt')}").read()
@@ -42,6 +46,7 @@ if __name__ == '__main__':
 					with open(os.path.join(result_path, f'log_{str(idx).zfill(3)}_{t}.txt'),'w') as log_file:
 						log_file.write(log)
 					os.system("rm -r ~/tartanvo/results/")
+					break
 """            
     for m, NUM_EXP, exclude in models:
         MODEL = m.split('/')[1].split('_best')[0]
